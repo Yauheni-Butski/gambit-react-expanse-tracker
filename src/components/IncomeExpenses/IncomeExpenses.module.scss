@@ -5,27 +5,27 @@
     display: flex;
     justify-content: space-between;
     margin: 20px 0;
-  }
-  
-  .incExpContainer > div {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .incExpContainer > div:first-of-type {
-    border-right: 1px solid #dedede;
+
+    > div {
+      flex: 1;
+      text-align: center;
+
+      &:first-of-type {
+        border-right: 1px solid #dedede;
+      }
+    }
   }
   
   .money {
     font-size: 20px;
     letter-spacing: 1px;
     margin: 5px 0;
-  }
-  
-  .money.plus {
-    color: #2ecc71;
-  }
-  
-  .money.minus {
-    color: #c0392b;
+
+    &.plus {
+      color: #2ecc71;
+    }
+
+    &.minus {
+      color: #c0392b;
+    }
   }
