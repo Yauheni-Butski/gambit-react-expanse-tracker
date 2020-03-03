@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
 
-import classNames from 'classnames';
-import styles from './IncomeExpenses.module.scss';
+import { IncomeExpensesComponent } from './IncomeExpenses.component';
 
 export const IncomeExpenses = () => {
     const { transactions } = useContext(GlobalContext);
@@ -17,19 +16,9 @@ export const IncomeExpenses = () => {
         .reduce((acc, item) => (acc += item), 0) * -1)
         .toFixed(2);
 
-    let moneyPlus = classNames(styles.money, styles.plus);
-    let moneyMinus = classNames(styles.money, styles.minus);
-
     return (
-        <div className={styles.incExpContainer}>
-            <div>
-                <h4>Income</h4>
-                <p className={moneyPlus}>${income}</p>
-            </div>
-            <div>
-                <h4>Expense</h4>
-                <p className={moneyMinus}>${expense}</p>
-            </div>
-        </div>
+        <IncomeExpensesComponent
+            income={income}
+            expense={expense}/>
     )
 }
