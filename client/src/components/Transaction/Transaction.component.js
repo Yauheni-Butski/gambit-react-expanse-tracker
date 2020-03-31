@@ -2,6 +2,7 @@ import React from 'react';
 
 import classNames from 'classnames/bind';
 import styles from './Transaction.module.scss';
+import { numberWithCommas } from '../../utils/format';
 
 let cx = classNames.bind(styles);
 
@@ -17,12 +18,12 @@ export const TransactionComponent = ({transaction, deleteTran}) => {
     });
 
     const onClick = () => {
-        deleteTran(transaction.id);
+        deleteTran(transaction._id);
     }
 
     return (
         <li className={elClass}>
-            {transaction.text} <span>{sign} ${absAmount}</span>
+            {transaction.text} <span>{sign} ${numberWithCommas(absAmount)}</span>
             <button onClick={onClick} className={styles.deleteBtn}>x</button>
         </li>
     )

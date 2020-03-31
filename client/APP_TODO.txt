@@ -3,6 +3,7 @@ TODO
 0. GlobalState зарефакторить. Вынести actions.
 3. Использовать redux с функциональными компонентами.
 5. Добавить TSLINT?{...} для проверки синтаксических ошибок. Как в старом проекте.
+6. import { numberWithCommas } from '../../utils/format'; всё таки опустить до view components
 
 DONE
 +1. Разбить стили из App.css на отдельные scss для каждого компонента.

@@ -26,6 +26,34 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
+    //TODO. Вынести отдельно. SAGA?
+    async function delTransaction(id) {
+        try {
+            await axios.delete(`/api/v1/transactions/${id}`);
+
+            dispatch(deleteTransaction(id));
+        } catch (error) {
+            dispatch(transactionError(error.response.data.error));
+        }
+    }
+
+    //TODO. Вынести отдельно. SAGA?
+    async function createTransaction(transaction){
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        try {
+            const res = await axios.post('/api/v1/transactions', transaction, config);
+
+            dispatch(addTransaction(res.data.data));
+        } catch (error) {
+            dispatch(transactionError(error.response.data.error));
+        }
+    }
+
     return (
         <GlobalContext.Provider
             value={{
@@ -33,8 +61,8 @@ export const GlobalProvider = ({ children }) => {
                 error: state.error,
                 loading: state.loading,
                 getTransactions,
-                deleteTransaction: (id) => dispatch(deleteTransaction(id)),
-                addTransaction: (transaction) => dispatch(addTransaction(transaction))}}>
+                deleteTransaction: (id) => delTransaction(id),
+                addTransaction: (transaction) => createTransaction(transaction)}}>
             {children}
         </GlobalContext.Provider>
     );
