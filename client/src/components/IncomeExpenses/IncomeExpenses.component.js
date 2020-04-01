@@ -1,4 +1,5 @@
 import React from 'react';
+import { numberWithCommas } from '../../utils/format';
 
 import classNames from 'classnames';
 import styles from './IncomeExpenses.module.scss';
@@ -12,11 +13,11 @@ export const IncomeExpensesComponent = ({income, expense}) => {
         <div className={styles.incExpContainer}>
             <div>
                 <h4>Income</h4>
-                <p className={moneyPlus}>${income}</p>
+                <p className={moneyPlus}>${numberWithCommas(income)}</p>
             </div>
             <div>
                 <h4>Expense</h4>
-                <p className={moneyMinus}>${expense}</p>
+                <p className={moneyMinus}>${numberWithCommas(expense)}</p>
             </div>
         </div>
     )

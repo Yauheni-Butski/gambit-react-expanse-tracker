@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
-import { numberWithCommas } from '../../utils/format';
 
 import { IncomeExpensesComponent } from './IncomeExpenses.component';
 
@@ -19,7 +18,7 @@ export const IncomeExpenses = () => {
 
     return (
         <IncomeExpensesComponent
-            income={numberWithCommas(income)}
-            expense={numberWithCommas(expense)}/>
+            income={income}
+            expense={expense}/>
     )
 }

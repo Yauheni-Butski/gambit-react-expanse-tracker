@@ -1,8 +1,8 @@
 import React from 'react';
+import { numberWithCommas } from '../../utils/format';
 
 import classNames from 'classnames/bind';
 import styles from './Transaction.module.scss';
-import { numberWithCommas } from '../../utils/format';
 
 let cx = classNames.bind(styles);
 
