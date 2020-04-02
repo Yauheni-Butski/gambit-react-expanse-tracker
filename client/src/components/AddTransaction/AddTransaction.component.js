@@ -8,6 +8,8 @@ export const AddTransactionComponent = ({addTransaction}) => {
     const onSubmit = e => {
         e.preventDefault();
         addTransaction(text, amount);
+        setText('');
+        setAmount(0);
     }
 
     return (

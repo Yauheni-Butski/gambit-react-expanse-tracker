@@ -1,9 +1,24 @@
-import React, { useContext, useEffect } from 'react';
-import { GlobalContext } from '../../context/GlobalState';
+import React, { useEffect } from 'react';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
+import axios from 'axios';
+
 import { TransactionListComponent } from './TransactionList.component';
+import { getAllTransactions, transactionError } from '../../context/actions';
 
 export const TransactionList = () => {
-    const { transactions, getTransactions } = useContext(GlobalContext);
+    const transactions = useSelector(state => state.transactions, shallowEqual);
+    const dispatch = useDispatch();
+
+    //TODO. Вынести отдельно. SAGA?
+    async function getTransactions(){
+        try {
+            const res = await axios.get('/api/v1/transactions');
+            dispatch(getAllTransactions(res.data.data));
+
+        } catch (error) {
+            dispatch(transactionError(error.response.data.error));
+        }
+    }
 
     useEffect(() => {
         getTransactions();

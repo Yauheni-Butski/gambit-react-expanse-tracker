@@ -7,11 +7,11 @@ import { IncomeExpenses } from './components/IncomeExpenses';
 import { TransactionList } from './components/TransactionList';
 import { AddTransaction } from './components/AddTransaction';
 
-import { GlobalProvider } from './context/GlobalState';
+import { ReduxProvider } from './redux_provider/ReduxProvider';
 
 function App() {
   return (
-    <GlobalProvider>
+    <ReduxProvider>
       <Header />
       <div className="container">
         <Balance />
@@ -19,7 +19,7 @@ function App() {
         <TransactionList />
         <AddTransaction />
       </div>
-    </GlobalProvider>
+    </ReduxProvider>
   );
 }
 

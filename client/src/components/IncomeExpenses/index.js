@@ -1,11 +1,9 @@
-import React, { useContext } from 'react';
-import { GlobalContext } from '../../context/GlobalState';
-
+import React from 'react';
+import { useSelector, shallowEqual } from 'react-redux';
 import { IncomeExpensesComponent } from './IncomeExpenses.component';
 
 export const IncomeExpenses = () => {
-    const { transactions } = useContext(GlobalContext);
-
+    const transactions = useSelector(state => state.transactions, shallowEqual);
     const amounts = transactions.map(transaction => transaction.amount);
     const income = amounts
         .filter(item => item > 0)
