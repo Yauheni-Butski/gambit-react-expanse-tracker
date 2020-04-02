@@ -8,7 +8,7 @@ export const TransactionListComponent = ({transactions}) => {
             <h3>History</h3>
             <ul className={styles.list}>
                 {transactions.map(tran => (
-                    <Transaction key={tran.id} transaction={tran} />
+                    <Transaction key={tran._id} transaction={tran} />
                 ))}
             </ul>
         </>

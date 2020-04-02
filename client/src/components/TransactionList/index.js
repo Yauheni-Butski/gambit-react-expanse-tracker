@@ -7,8 +7,7 @@ export const TransactionList = () => {
 
     useEffect(() => {
         getTransactions();
-        //eslint-disable-next-line react-hooks/exhaustive-deps
-        //TODO. В [] добавить зависимость и избавиться от коммента сверху.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
