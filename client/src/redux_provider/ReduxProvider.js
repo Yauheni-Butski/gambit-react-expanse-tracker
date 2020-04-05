@@ -1,9 +1,12 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from './store/store';
+import configureStore from './store/store';
 
 //ReduxProvider component
 export const ReduxProvider = ({ children }) => {
+
+   var store = configureStore();
+
     return (
             <Provider store={store}>
                     {children}

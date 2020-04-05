@@ -1,5 +1,7 @@
 import AppReducer from '../AppReducer';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import expanseTrackerSaga from '../../sagas';
 
 const initialStore = {
     transactions: [],
@@ -7,6 +9,15 @@ const initialStore = {
     loading: true
 };
 
-const store = createStore(AppReducer, initialStore);
+const sagaMiddleware = createSagaMiddleware();
 
-export default store;
+export default function configureStore(){
+    const store = createStore(
+        AppReducer,
+        initialStore,
+        applyMiddleware(sagaMiddleware));
+
+    sagaMiddleware.run(expanseTrackerSaga);
+
+    return store;
+}

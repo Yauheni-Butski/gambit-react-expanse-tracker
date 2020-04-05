@@ -1,27 +1,15 @@
 import React, { useEffect } from 'react';
-import { useSelector, shallowEqual, useDispatch } from 'react-redux';
-import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { TransactionListComponent } from './TransactionList.component';
-import { getAllTransactions, transactionError } from '../../context/actions';
+import { fetchAllSagaTransactions } from '../../sagas/actions';
 
 export const TransactionList = () => {
-    const transactions = useSelector(state => state.transactions, shallowEqual);
+    const transactions = useSelector(state => state.transactions);
     const dispatch = useDispatch();
 
-    //TODO. Вынести отдельно. SAGA?
-    async function getTransactions(){
-        try {
-            const res = await axios.get('/api/v1/transactions');
-            dispatch(getAllTransactions(res.data.data));
-
-        } catch (error) {
-            dispatch(transactionError(error.response.data.error));
-        }
-    }
-
     useEffect(() => {
-        getTransactions();
+        dispatch(fetchAllSagaTransactions());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
